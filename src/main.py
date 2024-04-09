@@ -2,27 +2,25 @@ import sys
 
 import pygame
 
-# Initialize Pygame
 pygame.init()
 
-# Set up the screen
+
 screenWidth, screenHeight = 800, 600
 screen = pygame.display.set_mode((screenWidth, screenHeight))
 pygame.display.set_caption("Fake Terminal")
 
-# Set up fonts
+
 font = pygame.font.Font(None, 32)
 
-# Define colors
+
 black = (0, 0, 0)
 white = (255, 255, 255)
 
-# Terminal variables
 cursorX = 10
 cursorY = 10
 inputText = ""
 
-# Main game loop
+# game loop
 running = True
 while running:
     for event in pygame.event.get():
@@ -38,22 +36,22 @@ while running:
             else:
                 inputText += event.unicode
 
-    # Clear the screen
+    # clear the screen
     screen.fill(black)
 
-    # Draw fake terminal window
+    # draw terminal window
     pygame.draw.rect(screen, white, (10, 10, screenWidth - 20, screenHeight - 20), 2)
 
-    # Draw input text
+    # draw input text
     inputSurface = font.render("> " + inputText, True, white)
     screen.blit(inputSurface, (cursorX, cursorY))
 
-    # Draw cursor
+    # draw cursor
     cursorSurface = font.render("_", True, white)
     cursorPosition = font.size("> " + inputText)[:2]
     screen.blit(cursorSurface, (cursorX + cursorPosition[0], cursorY))
 
-    # Update the display
+    # update display
     pygame.display.flip()
 
 # Quit Pygame
